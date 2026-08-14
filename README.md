@@ -21,6 +21,13 @@ UTM values are captured on every event (`page_view`, `telegram_join_click`,
 drove joins. Create a **separate Telegram invite link per campaign** in the
 channel settings (Invite Links → per-link member stats) to measure joins per ad.
 
+### X (Twitter) pixel
+
+Set `X_PIXEL_ID` at the top of `script.js` to your X pixel ID (Ads → Conversions
+→ Conversion tracking → tag manager). When set, the universal website tag loads
+and fires `PageView` on load plus `Lead` (with UTM data) on every confirmed
+Telegram join click. Empty string = pixel disabled (current default).
+
 ## Structure
 
 - `index.html` — all copy (headlines, benefits, testimonials, FAQ)

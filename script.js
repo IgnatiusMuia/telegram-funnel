@@ -3,6 +3,7 @@
 
   var TELEGRAM_URL = "https://t.me/+LVgmuaf6A-1jZTY0";
   var TELEGRAM_DM_URL = "https://t.me/Aryan_XCLUSIVE";
+  var X_PIXEL_ID = "";
 
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -11,6 +12,30 @@
     for (var k in data) payload[k] = data[k];
     if (window.dataLayer && Array.isArray(window.dataLayer)) window.dataLayer.push(payload);
     console.debug("[funnel]", payload);
+  }
+
+  function loadXPixel() {
+    if (!X_PIXEL_ID) return;
+    (function (e, t, n, s, u, a) {
+      s = e.twq = function () {
+        s.exe ? s.exe.apply(s, arguments) : s.queue.push(arguments);
+      };
+      s.version = "1.1";
+      s.queue = [];
+      u = t.createElement(n);
+      u.async = !0;
+      u.src = "https://static.ads-twitter.com/uwt.js";
+      a = t.getElementsByTagName(n)[0];
+      a.parentNode.insertBefore(u, a);
+    })(window, document, "script");
+    window.twq("init", X_PIXEL_ID);
+  }
+
+  function fireX(event, data) {
+    if (!X_PIXEL_ID || !window.twq) return;
+    try {
+      window.twq("track", event, data || {});
+    } catch (e) {}
   }
 
   function captureUtm() {
@@ -82,6 +107,7 @@
       return;
     }
     track("telegram_join_click", captureUtm());
+    fireX("Lead", captureUtm());
   });
 
   document.addEventListener("click", function (e) {
@@ -207,5 +233,7 @@
     onScroll();
   }
 
+  loadXPixel();
+  fireX("PageView", captureUtm());
   track("page_view", captureUtm());
 })();
