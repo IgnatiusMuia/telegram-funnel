@@ -3,7 +3,8 @@
 
   var TELEGRAM_URL = "https://t.me/+LVgmuaf6A-1jZTY0";
   var TELEGRAM_DM_URL = "https://t.me/Aryan_XCLUSIVE";
-  var X_PIXEL_ID = "";
+  var X_PIXEL_ID = "11jvlf";
+  var X_LEAD_PIXEL_ID = "";
 
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -32,9 +33,11 @@
   }
 
   function fireX(event, data) {
-    if (!X_PIXEL_ID || !window.twq) return;
+    if (!window.twq) return;
     try {
-      window.twq("track", event, data || {});
+      var id = event === "Lead" && X_LEAD_PIXEL_ID ? X_LEAD_PIXEL_ID : X_PIXEL_ID;
+      if (!id) return;
+      window.twq("track", event, { ...(data || {}), pixel_id: id });
     } catch (e) {}
   }
 

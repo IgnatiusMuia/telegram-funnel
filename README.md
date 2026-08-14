@@ -23,10 +23,13 @@ channel settings (Invite Links → per-link member stats) to measure joins per a
 
 ### X (Twitter) pixel
 
-Set `X_PIXEL_ID` at the top of `script.js` to your X pixel ID (Ads → Conversions
-→ Conversion tracking → tag manager). When set, the universal website tag loads
-and fires `PageView` on load plus `Lead` (with UTM data) on every confirmed
-Telegram join click. Empty string = pixel disabled (current default).
+- `X_PIXEL_ID = "11jvlf"` — active. Landing page views tag: fires `PageView`
+  on every visit.
+- `X_LEAD_PIXEL_ID = ""` — empty slot. When you create the Lead conversion
+  event in ads.x.com (Conversions → Create conversion event → type **Lead**),
+  paste its pixel ID here and `Lead` fires on it for every confirmed Telegram
+  join click. Until then, `Lead` falls back to the views pixel so no joins are
+  missed. Empty string = disabled (both).
 
 ## Structure
 
