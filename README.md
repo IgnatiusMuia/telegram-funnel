@@ -46,10 +46,10 @@ sips -s format jpeg -s formatOptions 85 /tmp/og.png --out assets/og.jpg
 
 ## Deploy
 
-- **GitHub Pages:** push to `main` — `.github/workflows/pages.yml` builds and
-  deploys automatically.
-- **Netlify:** connected to this repo (netlify.toml), auto-deploys on push.
-  Manual prod deploy: `netlify deploy --prod --dir .`
+- **GitHub Pages:** enabled in repo settings (Pages → Deploy from a branch, `main` root).
+  Any push to `main` goes live automatically at the URL above.
+- **Netlify:** `netlify deploy --prod --dir .` from this folder (netlify.toml sets
+  cache + security headers, applied on the live site). Site: aryanxclusive-funnel.
 
 ## Compliance
 
